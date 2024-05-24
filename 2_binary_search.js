@@ -1,6 +1,6 @@
 // O(log(n))
 
-const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21, 22, 34]
 let counter = 0
 
 function binarySearch (array, item) {
@@ -32,4 +32,18 @@ function binarySearch (array, item) {
     return position
 }
 
-console.log(binarySearch(array, 17), counter)
+// рекурсия
+
+function binarySearchRecursion (array, item, start, end) {
+    let middle = Math.floor((start + end) / 2)
+    if (item === array[middle]) {
+        return middle
+    }
+    if (item < array[middle]) {
+        return binarySearchRecursion(array, item, start, middle - 1)
+    } else {
+        return binarySearchRecursion(array, item, middle + 1, end)
+    }
+}
+
+console.log(binarySearchRecursion(array, 17, 0, array.length))
