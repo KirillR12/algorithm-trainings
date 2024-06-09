@@ -13,6 +13,6 @@
 
 // • If both strings are the same, return []
 
-// • Both strings will always be the same length
+// • Both strings will always be the same length 
 
 // • Capitalization and punctuation matter

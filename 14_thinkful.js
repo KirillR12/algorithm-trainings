@@ -9,3 +9,9 @@
 // For example, take_umbrella('sunny', 0.40) should return False.
 
 // As an additional challenge, consider solving this kata using only logical operaters and not using any if statements.
+
+function takeUmbrella(weather, chance) {
+    return weather === 'rainy' || (weather === 'cloudy' && chance > 0.2) || (weather === 'sunny' && chance > 0.5) ? true : false
+  }
+
+console.log(takeUmbrella('sunny', 0.6))
