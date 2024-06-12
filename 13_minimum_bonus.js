@@ -50,8 +50,11 @@ for (let i = 0; i < scores.length-1; i++) {
       } else if (arr[i] === 2) {
         arr.push(3)
         break
-      } else {
+      } else if (arr[i] === 3) {
         arr.push(4)
+        break
+      } else {
+        arr.push(5)
         break
       }
     }
@@ -59,12 +62,30 @@ for (let i = 0; i < scores.length-1; i++) {
     break
   }
   }
+
+  for (let i = scores.length-1; i > 0; i--) { 
+    if (i !== 0) {
+      if (scores[i-1] > scores[i]) { 
+             if (scores.length-1 === 1) {
+              arr[i] = 1
+             } else if (scores.length-2 === 1) {
+              arr[i] = 2
+             } else if (scores.length-3 === 1) {
+              arr[i] = 3
+             }
+      }
+    }
+  }
   const initialValue = 0
   const sumWithInitial = arr.reduce(
     (accumulator, currentValue) => accumulator + currentValue,
     initialValue,
   )
-  return sumWithInitial
+  // return sumWithInitial
+  return arr
 } 
 
-console.log(minimumBonus([10,20,30]))
+// 1 2 4 3 2 1 
+// 1 2 3 1 1 1
+
+console.log(minimumBonus([20,30,40,30,20,10]))
