@@ -39,53 +39,42 @@
 
 // The possible bonus amount of each team can be:[1,2,1,2,3,1,2,3,4,1]
 
-function minimumBonus(scores){
-  let arr = [1]
-for (let i = 0; i < scores.length-1; i++) {
-  for (let n = i + 1; n < scores.length; n++) {
-    if (scores[i] < scores[n]) {
-      if (arr[i] === 1) {
-        arr.push(2)
-        break
-      } else if (arr[i] === 2) {
-        arr.push(3)
-        break
-      } else if (arr[i] === 3) {
-        arr.push(4)
-        break
-      } else {
-        arr.push(5)
-        break
-      }
-    }
-    arr.push(1)
-    break
-  }
-  }
+const scores = [20, 30, 40, 30, 20, 10];
 
-  for (let i = scores.length-1; i > 0; i--) { 
-    if (i !== 0) {
-      if (scores[i-1] > scores[i]) { 
-             if (scores.length-1 === 1) {
-              arr[i] = 1
-             } else if (scores.length-2 === 1) {
-              arr[i] = 2
-             } else if (scores.length-3 === 1) {
-              arr[i] = 3
-             }
-      }
+const bonuses = [];
+for (let i = 0; i < scores.length; i++) {
+  bonuses.push(1);
+}
+
+let i = 1;
+while (i < scores.length - 1) {
+
+  if (scores[i] < scores[i - 1]) {
+    if (bonuses[i] >= bonuses[i - 1]) {
+      bonuses[i - 1] = bonuses[i] + 1;
     }
   }
-  const initialValue = 0
-  const sumWithInitial = arr.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    initialValue,
-  )
-  // return sumWithInitial
-  return arr
-} 
 
-// 1 2 4 3 2 1 
-// 1 2 3 1 1 1
+  if (scores[i] > scores[i + 1]) {
+    if (bonuses[i] <= bonuses[i + 1]) {
+      bonuses[i] = bonuses[i + 1] + 1;
+      i = 1;
+      continue;
+    }
+  }
 
-console.log(minimumBonus([20,30,40,30,20,10]))
+  if (scores[i] > scores[i - 1]) {
+    if (bonuses[i] <= bonuses[i - 1]) {
+      bonuses[i] = bonuses[i - 1] + 1;
+    }
+  }
+
+  if (scores[i] < scores[i + 1]) {
+    if (bonuses[i] >= bonuses[i + 1]) {
+      bonuses[i + 1] = bonuses[i] + 1;
+    }
+  }
+  i++;
+  }
+  
+  console.log(bonuses.reduce((a, b) => a + b))
