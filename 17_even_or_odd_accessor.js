@@ -7,12 +7,16 @@
 // evenOrOdd(7); //'Odd'
 // evenOrOdd[7]; //'Odd'
 
-function evenOrOdd(n) {
-    if (n % 2 === 0) {
-      return "Even"
-    } else {
-      return "Odd"
-    }
-    }
+const target = function(n) {
+return n % 2 === 0 ? "Even" : "Odd"
+}
 
-console.log(evenOrOdd[44])
+const handler = {
+  get(target, props) {
+    return target(props)
+  }
+}
+
+const evenOrOdd = new Proxy(target, handler)
+
+console.log(handler[32])
