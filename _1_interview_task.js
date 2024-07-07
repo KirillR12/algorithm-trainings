@@ -22,4 +22,4 @@ const func = (s) => {
     }
     
 
-console.log(func('ABBCcAD'))
+console.log(func('AAAABBBCCDAABBB'))
